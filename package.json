@@ -1,0 +1,17 @@
+{
+  "name": "s-tree",
+  "version": "1.0.0",
+  "description": "Segment tree implementation",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "node_modules/.bin/istanbul cover --report html _mocha -- test/**/*.test.js -R spec -u exports",
+    "test": "npm run coverage"
+  },
+  "author": "Rogerio Carvalho",
+  "license": "ISC",
+  "devDependencies": {
+    "istanbul": "^0.3.5",
+    "mocha": "^2.1.0",
+    "should": "^4.6.2"
+  }
+}
