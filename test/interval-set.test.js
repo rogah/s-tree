@@ -40,40 +40,58 @@ describe('IntervalSet', function () {
       intervalSet = new IntervalSet();
     })
 
-    it('should throw if starts of interval is not provided', function () {
+    it('should throw if #starts of interval is not provided', function () {
       (function () {
         intervalSet.pushAll();
       }).should.throw('Invalid parameter. Parementers #starts must be a Array.');
     })
 
-    it('should throw if starts of interval is not an Array type', function () {
+    it('should throw if #starts of interval is not an Array type', function () {
       (function () {
         intervalSet.pushAll('string');
       }).should.throw('Invalid parameter. Parementers #starts must be a Array.');
     })
 
-    it('should throw if ends of interval is not provided', function () {
+    it('should throw if #ends of interval is not provided', function () {
       (function () {
         intervalSet.pushAll([1, 5]);
       }).should.throw('Invalid parameter. Parementer #ends must be a Array.');
     })
 
-    it('should throw if ends of interval is not an Array type', function () {
+    it('should throw if #ends of interval is not an Array type', function () {
       (function () {
         intervalSet.pushAll([1, 5], 'string');
       }).should.throw('Invalid parameter. Parementer #ends must be a Array.');
     })
 
-    it('should not throw if data of interval is not provided', function () {
+    it('should not throw if #data of interval is not provided', function () {
       (function () {
         intervalSet.pushAll([1, 5], [5, 10]);
       }).should.not.throw();
     })
 
-    it('should throw if data of interval is provided but not as an Array type', function () {
+    it('should throw if #data is provided but not as an Array type', function () {
       (function () {
         intervalSet.pushAll([1, 5], [5, 10], 'foo');
       }).should.throw('Invalid parameter. Parementer #data (optional), if provided, must be a Array.');
+    })
+
+    it('should throw if #starts does not match #ends length', function () {
+      (function () {
+        intervalSet.pushAll([1], [5, 10]);
+      }).should.throw('Invalid parameter. Parementers #starts, #ends and #data (optional) must have the same length.');
+    })
+
+    it('should throw if #ends does not match #starts length', function () {
+      (function () {
+        intervalSet.pushAll([1, 5], [5]);
+      }).should.throw('Invalid parameter. Parementers #starts, #ends and #data (optional) must have the same length.');
+    })
+
+    it('should throw if #data does not match #starts length', function () {
+      (function () {
+        intervalSet.pushAll([1, 5], [5, 10], ['foo']);
+      }).should.throw('Invalid parameter. Parementers #starts, #ends and #data (optional) must have the same length.');
     })
 
     it('should add intervals without optional data Array', function () {
@@ -84,6 +102,15 @@ describe('IntervalSet', function () {
     it('should add intervals with optional data Array', function () {
         intervalSet.pushAll([1, 10], [5, 10], ['foo', 'bar']);
         intervalSet.intervals.length.should.eql(2);
+    })
+  })
+
+  describe('#clear()', function () {
+    it('should delete all intervals', function () {
+      var intervalSet = new IntervalSet();
+      intervalSet.push(5, 10, 'foo');
+      intervalSet.clear();
+      intervalSet.intervals.length.should.be.eql(0);
     })
   })
 })
