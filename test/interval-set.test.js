@@ -106,11 +106,35 @@ describe('IntervalSet', function () {
   })
 
   describe('#clear()', function () {
+    var intervalSet = new IntervalSet();
+
+    intervalSet.push(5, 10, 'foo');
+    intervalSet.clear();
+
     it('should delete all intervals', function () {
-      var intervalSet = new IntervalSet();
-      intervalSet.push(5, 10, 'foo');
-      intervalSet.clear();
       intervalSet.intervals.length.should.be.eql(0);
+    })
+  })
+
+  describe('#getEndpoints()', function () {
+    var intervalSet = new IntervalSet();
+
+    intervalSet.pushAll([1, 10, 5, 8], [5, 15, 10, 20], ['foo', 'bar', 'baz', 'qux']);
+
+    it('should return all unique interval endpoints', function () {
+      intervalSet.getEndpoints().should.be.eql([-Infinity, 1, 5, 8, 10, 15, 20, Infinity]);
+    })
+  })
+
+  describe('#hasIntervals()', function () {
+    it('should return false if empty', function () {
+      new IntervalSet().hasIntervals().should.be.false;
+    })
+
+    it('should return false if empty', function () {
+      var intervalSet = new IntervalSet();
+      intervalSet.push(5, 10);
+      intervalSet.hasIntervals().should.be.true;
     })
   })
 })
