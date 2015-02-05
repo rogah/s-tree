@@ -33,13 +33,13 @@ describe('SegmentTree', function () {
     })
   });
 
-  // describe('#build()', function () {
-  //   it('should throw if no intervals', function () {
-  //     (function () {
-  //       new SegmentTree().build();
-  //     }).should.throw('There is no interval.');
-  //   })
-  // })
+  describe('#build()', function () {
+    it('should throw if no intervals', function () {
+      (function () {
+        new SegmentTree().build();
+      }).should.throw('There is no interval.');
+    })
+  })
 
   describe('when querying', function () {
     var segmentTree = new SegmentTree();
@@ -59,57 +59,47 @@ describe('SegmentTree', function () {
 
     describe('#queryInterval()', function () {
       it('should return correct number of intervals', function () {
-        segmentTree.query({ start: 1, end: 2, concurrent: false }).should.equal(2);
-        segmentTree.query({ start: [1], end: [2], concurrent: false }).should.equal(2);
-        segmentTree.queryInterval(0, 0).should.equal(0);
-        segmentTree.queryInterval(15, 25).should.equal(0);
-        segmentTree.queryInterval(1, 2).should.equal(2);
-        segmentTree.queryInterval(2.5, 3).should.equal(1);
-        segmentTree.queryInterval(5, 6).should.equal(3);
-        segmentTree.queryInterval(6.5, 11).should.equal(5);
+        segmentTree.query({ start: 0, end: 0 }).should.equal(0);
+        segmentTree.query({ start: 15, end: 25 }).should.equal(0);
+        segmentTree.query({ start: 1, end: 2 }).should.equal(2);
+        segmentTree.query({ start: 2.5, end: 3 }).should.equal(1);
+        segmentTree.query({ start: 5, end: 6 }).should.equal(3);
+        segmentTree.query({ start: 6.5, end: 11 }).should.equal(5);
       })
 
-      // it('should return correct number of concurrences for given points', function () {
-      //   segmentTree.queryInterval(5, 6, { concurrent: true }, function (data) {
-      //     console.log(data);
-      //   }).should.equal(2);
-      // })
+      it('should return correct number of concurrences for given points', function () {
+        segmentTree.query({ start: 5, end: 6, concurrency: true }, function (data) {
+          //console.log(data);
+        }).should.equal(2);
+      })
     })
 
     describe('#queryPoint()', function () {
       it('should return correct number of overlaps for a given point', function () {
-        segmentTree.queryPoint(0).should.equal(0);
-        segmentTree.queryPoint(15).should.equal(0);
-        segmentTree.queryPoint(1).should.equal(1);
-        segmentTree.queryPoint(2).should.equal(1);
-        segmentTree.queryPoint(3).should.equal(1);
-        segmentTree.queryPoint(2.5).should.equal(1);
-        segmentTree.queryPoint(5).should.equal(2);
-        segmentTree.queryPoint(6).should.equal(3);
-        segmentTree.queryPoint(6.5).should.equal(2);
-        segmentTree.queryPoint(11).should.equal(3);
+        segmentTree.query({ point: 0 }).should.equal(0);
+        segmentTree.query({ point: 15 }).should.equal(0);
+        segmentTree.query({ point: 1 }).should.equal(1);
+        segmentTree.query({ point: 2 }).should.equal(1);
+        segmentTree.query({ point: 3 }).should.equal(1);
+        segmentTree.query({ point: 2.5 }).should.equal(1);
+        segmentTree.query({ point: 5 }).should.equal(2);
+        segmentTree.query({ point: 6 }).should.equal(3);
+        segmentTree.query({ point: 6.5 }).should.equal(2);
+        segmentTree.query({ point: 11 }).should.equal(3);
       })
     })
 
     describe('#queryPoints()', function () {
       it('should return correct number of overlaps for given points', function () {
-        segmentTree.queryPoints([0]).should.equal(0);
-        segmentTree.queryPoints([0, 15]).should.equal(0);
-        segmentTree.queryPoints([1, 2, 3]).should.equal(2);
-        segmentTree.queryPoints([2, 2.5, 3]).should.equal(1);
-        segmentTree.queryPoints([5, 6]).should.equal(3);
-        segmentTree.queryPoints([6, 6.5]).should.equal(3);
-        segmentTree.queryPoints([6, 5, 4, 3]).should.equal(4);
-        segmentTree.queryPoints([11, 11.5]).should.equal(3);
+        segmentTree.query({ points: [0] }).should.equal(0);
+        segmentTree.query({ points: [0, 15] }).should.equal(0);
+        segmentTree.query({ points: [1, 2, 3] }).should.equal(2);
+        segmentTree.query({ points: [2, 2.5, 3] }).should.equal(1);
+        segmentTree.query({ points: [5, 6] }).should.equal(3);
+        segmentTree.query({ points: [6, 6.5] }).should.equal(3);
+        segmentTree.query({ points: [6, 5, 4, 3] }).should.equal(4);
+        segmentTree.query({ points: [11, 11.5] }).should.equal(3);
       })
     })
-
-    // describe('#queryConcurrencies()', function () {
-    //   it('should return correct number of overlaps for given points', function () {
-    //     segmentTree.queryInterval(10, 13, function (data, occ) {
-    //       console.log(occ);
-    //     }).should.equal(2);
-    //   })
-    // })
   })
 })
