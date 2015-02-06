@@ -219,4 +219,52 @@ describe('Segment', function () {
       })
     })
   })
+
+  describe('#isSubsetOf()', function () {
+    var segment = new Segment(5, 10);
+
+    it('should return true if a subset of given segment', function () {
+      var other = new Segment(5, 10);
+      segment.isSubsetOf(other).should.be.true;
+    })
+
+    it('should return false as a superset of given segment', function () {
+      var other = new Segment(6, 9);
+      segment.isSubsetOf(other).should.be.false;
+    })
+
+    it('should return false as a intersection of given segment', function () {
+      var other = new Segment(6, 11);
+      segment.isSubsetOf(other).should.be.false;
+    })
+
+    it('should return false as a disjoint of given segment', function () {
+      var other = new Segment(2, 4);
+      segment.isSubsetOf(other).should.be.false;
+    })
+  })
+
+  describe('#isDisjointOf()', function () {
+    var segment = new Segment(5, 10);
+
+    it('should return false if a subset of given segment', function () {
+      var other = new Segment(5, 10);
+      segment.isDisjointOf(other).should.be.false;
+    })
+
+    it('should return false as a superset of given segment', function () {
+      var other = new Segment(6, 9);
+      segment.isDisjointOf(other).should.be.false;
+    })
+
+    it('should return false as a intersection of given segment', function () {
+      var other = new Segment(2, 6);
+      segment.isDisjointOf(other).should.be.false;
+    })
+
+    it('should return true as a disjoint of given segment', function () {
+      var other = new Segment(2, 4);
+      segment.isDisjointOf(other).should.be.true;
+    })
+  })
 })
