@@ -121,10 +121,16 @@ describe('SegmentTree', function () {
         }).should.throw('The options provided are invalid to query intervals.');
       })
 
-      it('should throw if #options.start argument is of a different type', function () {
+      it('should throw if #options.start argument is of a different type then Number', function () {
         (function () {
           segmentTree.query({ start: '5', end: 10 }, callbackStub);
         }).should.throw('The options provided are invalid to query intervals.');
+      })
+
+      it('should not throw if #options.start argument is of type then Array', function () {
+        (function () {
+          segmentTree.query({ start: [ 5 ], end:[ 10 ] }, callbackStub);
+        }).should.not.throw();
       })
 
       it('should throw if #options.end argument is missing', function () {
@@ -133,9 +139,39 @@ describe('SegmentTree', function () {
         }).should.throw('The options provided are invalid to query intervals.');
       })
 
-      it('should throw if #options.end argument is of a different type', function () {
+      it('should throw if #options.end argument is of a different type then Numbe', function () {
         (function () {
           segmentTree.query({ start: 5, end: '10' }, callbackStub);
+        }).should.throw('The options provided are invalid to query intervals.');
+      })
+
+      it('should not throw if #options.concurrency is missing', function () {
+        (function () {
+          segmentTree.query({ start: 5, end: 10 }, callbackStub);
+        }).should.not.throw();
+      })
+
+      it('should throw if #options.concurrency is of a different type then Boolean', function () {
+        (function () {
+          segmentTree.query({ start: 5, end: 10, concurrency: 'a' }, callbackStub);
+        }).should.throw('The options provided are invalid to query intervals.');
+      })
+
+      it('should throw if only #options.concurrency is provided', function () {
+        (function () {
+          segmentTree.query({ concurrency: true }, callbackStub);
+        }).should.throw('The options provided are invalid to query intervals.');
+      })
+
+      it('should throw if #options.point is of different type then Number', function () {
+        (function () {
+          segmentTree.query({ point: [] }, callbackStub);
+        }).should.throw('The options provided are invalid to query intervals.');
+      })
+
+      it('should throw if #options.points is of different type then Array', function () {
+        (function () {
+          segmentTree.query({ points: 5 }, callbackStub);
         }).should.throw('The options provided are invalid to query intervals.');
       })
 
