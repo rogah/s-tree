@@ -93,6 +93,12 @@ describe('Segment', function () {
     var segment = new Segment(5, 10);
     
     describe('when including endpoints (default)', function () {
+
+      it('should return true if #start is equal to #end point of both segments', function () {
+        var point = new Segment(1, 1),
+          other = new Segment(1, 1);
+        point.overlapWith(other).should.be.true;
+      })
       
       it('should return true if given segment is equal to endpoints', function () {
         var other = new Segment(5, 10);
@@ -151,59 +157,65 @@ describe('Segment', function () {
     })
 
     describe('when excluding endpoints', function () {
+      it('should return false if #start is equal to #end point of both segments', function () {
+        var point = new Segment(1, 1),
+          other = new Segment(1, 1);
+        point.overlapWith(other, false).should.be.false;
+      })
+
       it('should return true if given segment is equal to endpoints', function () {
         var other = new Segment(5, 10);
-        segment.overlapWith(other, true).should.be.true;
+        segment.overlapWith(other, false).should.be.true;
       })
 
       it('should return true if given segment is a subset', function () {
         var other = new Segment(6, 9);
-        segment.overlapWith(other, true).should.be.true;
+        segment.overlapWith(other, false).should.be.true;
       })
 
       it('should return true if given segment is a superset', function () {
         var other = new Segment(4, 11);
-        segment.overlapWith(other, true).should.be.true;
+        segment.overlapWith(other, false).should.be.true;
       })
 
       it('should return false if given segment ends at the start point', function () {
         var other = new Segment(4, 5);
-        segment.overlapWith(other, true).should.be.false;
+        segment.overlapWith(other, false).should.be.false;
       })
 
       it('should return false if given segment starts at end point', function () {
         var other = new Segment(10, 11);
-        segment.overlapWith(other, true).should.be.false;
+        segment.overlapWith(other, false).should.be.false;
       })
 
       it('should return true if given segment starts at start point and ends after', function () {
         var other = new Segment(5, 11);
-        segment.overlapWith(other, true).should.be.true;
+        segment.overlapWith(other, false).should.be.true;
       })
 
       it('should return true if given segment ends at end pont and starts before', function () {
         var other = new Segment(4, 10);
-        segment.overlapWith(other, true).should.be.true;
+        segment.overlapWith(other, false).should.be.true;
       })
 
       it('should return true if given segment starts in between and ends after', function () {
         var other = new Segment(6, 11);
-        segment.overlapWith(other, true).should.be.true;
+        segment.overlapWith(other, false).should.be.true;
       })
 
       it('should return true if given segment ends in between and starts before', function () {
         var other = new Segment(4, 9);
-        segment.overlapWith(other, true).should.be.true;
+        segment.overlapWith(other, false).should.be.true;
       })
 
       it('should return false if given segment ends before start point', function () {
         var other = new Segment(3, 4);
-        segment.overlapWith(other, true).should.be.false;
+        segment.overlapWith(other, false).should.be.false;
       })
 
       it('should return false if given segment starts after end point', function () {
         var other = new Segment(11, 12);
-        segment.overlapWith(other, true).should.be.false;
+        segment.overlapWith(other, false).should.be.false;
       })
     })
   })

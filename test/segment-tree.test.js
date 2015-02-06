@@ -81,7 +81,7 @@ describe('SegmentTree', function () {
     |-------------------------------------------------------------------------------------------|                                                                                           |  
     |  oa>   o--b-->           o-----c----->           o-------------f--------------->          |
     |                    0-----d----->                       o--------g-------->                |
-    |                                 o--------e------->           oh>                          |
+    |                              ----------e-------->           oh>    o---------i-------->   |
     *------------------------------------------------------------------------------------------*/
 
     var segmentTree = new SegmentTree(),
@@ -94,10 +94,11 @@ describe('SegmentTree', function () {
           .push(2, 3, 'b')
           .push(5, 7, 'c')
           .push(4, 6, 'd')
-          .push(6, 9, 'e')
+          .push(5.5, 9, 'e')
           .push(9, 14, 'f')
           .push(10, 13, 'g')
           .push(11, 11, 'h')
+          .push(12, 15, 'h')
         .build();
     })
 
@@ -173,32 +174,254 @@ describe('SegmentTree', function () {
       }).should.throw('The options provided are invalid to query intervals.');
     })
 
-    describe('when querying (start, end)', function () {
+    describe('when querying overlaps for (start, end)', function () {
 
-      it('should return none on (0, 0) for given interval', function () {
-        segmentTree.query({ start: 0, end: 0 }, function (interals) {
-          interals.should.be.empty;
+      describe('including endpoints', function () {
+
+        it('should return none on (0, 0) for given hasIntervals', function () {
+          segmentTree.query({ start: 0, end: 0 }, function (interals) {
+            interals.should.be.empty;
+          })
+        })
+
+        it('should return 1 on (1, 1) for given intervals', function () {
+          segmentTree.query({ start: 1, end: 1 }, function (interals) {
+           interals.length.should.be.eql(1);
+          })
+        })
+
+        it('should return none on (1.1, 1.9) for given intervals', function () {
+          segmentTree.query({ start: 1.1, end: 1.9 }, function (interals) {
+            interals.should.be.empty;
+          })
+        })
+
+        it('should return 2 on (1, 2) for given intervals', function () {
+          segmentTree.query({ start: 1, end: 2 }, function (interals) {
+            interals.length.should.be.eql(2);
+          })
+        })
+
+        it('should return 2 on (2, 4) for given intervals', function () {
+          segmentTree.query({ start: 2, end: 4 }, function (interals) {
+            interals.length.should.be.eql(2);
+          })
+        })
+
+        it('should return 3 on (5.5, 6.5) for given intervals', function () {
+          segmentTree.query({ start: 5.5, end: 6.5 }, function (interals) {
+            interals.length.should.be.eql(3);
+          })
+        })
+
+        it('should return 5 on (5.5, 10.5) for given intervals', function () {
+          segmentTree.query({ start: 5.5, end: 10.5 }, function (interals) {
+            interals.length.should.be.eql(5);
+          })
+        })
+
+        it('should return 6 on (5.5, 11) for given intervals', function () {
+          segmentTree.query({ start: 5.5, end: 11 }, function (interals) {
+            interals.length.should.be.eql(6);
+          })
+        })
+
+        it('should return 1 on (14, 14) for given intervals', function () {
+          segmentTree.query({ start: 14, end: 14 }, function (interals) {
+            interals.length.should.be.eql(2);
+          })
         })
       })
 
-      it('should return 1 on (1, 1) for given interval', function () {
-        segmentTree.query({ start: 1, end: 1 }, function (interals) {
-          interals.length.should.be.eql(1);
-        })
-      })
+      describe('excluding endpoints', function () {
 
-      it('should return none on (1.1, 1.9) for given interval', function () {
-        segmentTree.query({ start: 1.1, end: 1.9 }, function (interals) {
-          interals.should.be.empty;
+        it('should return none on (0, 0) for given hasIntervals', function () {
+          segmentTree.query({ start: 0, end: 0, endpoints: false }, function (interals) {
+            interals.should.be.empty;
+          })
         })
-      })
 
-      it('should return 2 on (2, 4) for given interval where by default endpoints are included', function () {
-        segmentTree.query({ start: 2, end: 4 }, function (interals) {
-          interals.length.should.be.eql(2);
+        it('should return none on (1, 1) for given intervals', function () {
+          segmentTree.query({ start: 1, end: 1, endpoints: false }, function (interals) {
+           interals.length.should.be.eql(0);
+          })
+        })
+
+        it('should return none on (1.1, 1.9) for given intervals', function () {
+          segmentTree.query({ start: 1.1, end: 1.9, endpoints: false }, function (interals) {
+            interals.should.be.empty;
+          })
+        })
+
+        it('should return none on (1, 2) for given intervals', function () {
+          segmentTree.query({ start: 1, end: 2, endpoints: false }, function (interals) {
+            interals.length.should.be.empty;
+          })
+        })
+
+        it('should return 1 on (2, 4) for given intervals', function () {
+          segmentTree.query({ start: 2, end: 4, endpoints: false }, function (interals) {
+            interals.length.should.be.eql(1);
+          })
+        })
+
+        it('should return 3 on (5.5, 6.5) for given intervals', function () {
+          segmentTree.query({ start: 5.5, end: 6.5, endpoints: false }, function (interals) {
+            interals.length.should.be.eql(3);
+          })
+        })
+
+        it('should return 5 on (5.5, 10.5) for given intervals', function () {
+          segmentTree.query({ start: 5.5, end: 10.5, endpoints: false }, function (interals) {
+            interals.length.should.be.eql(5);
+          })
+        })
+
+        it('should return 5 on (5.5, 11) for given intervals', function () {
+          segmentTree.query({ start: 5.5, end: 11, endpoints: false }, function (interals) {
+            interals.length.should.be.eql(5);
+          })
+        })
+
+        it('should return 4 on (14, 14) for given intervals', function () {
+          segmentTree.query({ start: 14, end: 14, endpoints: false }, function (interals) {
+            interals.length.should.be.empty;
+          })
         })
       })
     })
+
+    /*------------------------------------------------------------------------------------------*
+    |  01    02    03    04    05    06    07    08    09    10    11    12    13    14    15   |
+    |-------------------------------------------------------------------------------------------|                                                                                           |  
+    |  oa>   o--b-->           o-----c----->           o-------------f--------------->          |
+    |                    0-----d----->                       o--------g-------->                |
+    |                              ----------e-------->           oh>    o---------i-------->   |
+    *------------------------------------------------------------------------------------------*/
+
+    describe('when querying concurrences for (start, end)', function () {
+
+      describe('including endpoints', function () {
+
+        it('should return none on (0,0) for given intervals', function () {
+          segmentTree.query({ start: 0, end: 0, concurrency: true }, function (interals) {
+            interals.length.should.be.empty;
+          })
+        })
+
+        it('should return none on (1,1) for given intervals', function () {
+          segmentTree.query({ start: 1, end: 1, concurrency: true }, function (interals) {
+            interals.length.should.be.empty;
+          })
+        })
+
+        it('should return 1 on (4,5) for given intervals', function () {
+          segmentTree.query({ start: 4, end: 5, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(1);
+          })
+        })
+
+        it('should return 3 on (5.5,6) for given intervals', function () {
+          segmentTree.query({ start: 5.5, end: 6, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(3);
+          })
+        })
+
+        it('should return 2 on (5,6) for given intervals', function () {
+          segmentTree.query({ start: 5, end: 6, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(2);
+          })
+        })
+
+        it('should return 2 on (6,7) for given intervals', function () {
+          segmentTree.query({ start: 6, end: 7, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(2);
+          })
+        })
+
+        it('should return 1 on (9,12) for given intervals', function () {
+          segmentTree.query({ start: 9, end: 12, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(1);
+          })
+        })
+
+        it('should return 2 on (10,13) for given intervals', function () {
+          segmentTree.query({ start: 10, end: 13, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(2);
+          })
+        })
+
+        it('should return 3 on (12,13) for given intervals', function () {
+          segmentTree.query({ start: 12, end: 13, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(3);
+          })
+        })
+      })
+
+      describe('excluding endpoints', function () {
+
+        it('should return none on (0,0) for given intervals', function () {
+          segmentTree.query({ start: 0, end: 0, endpoints: false, concurrency: true }, function (interals) {
+            interals.length.should.be.empty;
+          })
+        })
+
+        it('should return none on (1,1) for given intervals', function () {
+          segmentTree.query({ start: 1, end: 1, endpoints: false, concurrency: true }, function (interals) {
+            interals.length.should.be.empty;
+          })
+        })
+
+        it('should return 1 on (4,5) for given intervals', function () {
+          segmentTree.query({ start: 4, end: 5, endpoints: false, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(1);
+          })
+        })
+
+        it('should return 3 on (5.5,6) for given intervals', function () {
+          segmentTree.query({ start: 5.5, end: 6, endpoints: false, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(3);
+          })
+        })
+
+        it('should return 2 on (5,6) for given intervals', function () {
+          segmentTree.query({ start: 5, end: 6, endpoints: false, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(2);
+          })
+        })
+
+        it('should return 2 on (6,7) for given intervals', function () {
+          segmentTree.query({ start: 6, end: 7, endpoints: false, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(2);
+          })
+        })
+
+        it('should return 1 on (9,12) for given intervals', function () {
+          segmentTree.query({ start: 9, end: 12, endpoints: false, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(1);
+          })
+        })
+
+        it('should return 2 on (10,13) for given intervals', function () {
+          segmentTree.query({ start: 10, end: 13, endpoints: false, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(2);
+          })
+        })
+
+        it('should return 3 on (12,13) for given intervals', function () {
+          segmentTree.query({ start: 12, end: 13, endpoints: false, concurrency: true }, function (interals) {
+            interals.length.should.be.eql(3);
+          })
+        })
+      })
+    })
+
+    describe('when querying overlaps for point', function () {
+
+      
+    })
+
+    //#################
 
   //   it('should return correct number of intervals', function () {
   //     segmentTree.query({ start: 0, end: 0 }).should.equal(0);

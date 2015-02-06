@@ -1,5 +1,5 @@
 --require should
---reporter list
+--reporter spec
 --ui bdd
 --timeout 8000
 --slow 200
