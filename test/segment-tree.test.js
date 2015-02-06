@@ -132,6 +132,12 @@ describe('SegmentTree', function () {
       }).should.not.throw();
     })
 
+    it('should not throw if #callback() is not provided', function () {
+      (function () {
+        segmentTree.query({ start: [ 5 ], end:[ 10 ] });
+      }).should.not.throw();
+    })
+
     it('should throw if #options.end argument is missing', function () {
       (function () {
         segmentTree.query({ start: 5 }, callbackStub);
