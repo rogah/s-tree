@@ -74,7 +74,7 @@ describe('SegmentTree', function () {
     })
   })
 
-  describe('when querying', function () {
+  describe('#query()', function () {
 
     /*------------------------------------------------------------------------------------------*
     |  01    02    03    04    05    06    07    08    09    10    11    12    13    14    15   |
@@ -87,7 +87,7 @@ describe('SegmentTree', function () {
     var segmentTree = new SegmentTree(),
       callbackStub = function () {};
 
-    beforeEach(function() {
+    before(function() {
       segmentTree
         .clear()
           .push(1, 1, 'a')
@@ -99,124 +99,148 @@ describe('SegmentTree', function () {
           .push(10, 13, 'g')
           .push(11, 11, 'h')
         .build();
-    });
+    })
 
-    describe('#query()', function () {
+    it('should throw if no #options object is provided', function () {
+      (function () {
+        segmentTree.query();
+      }).should.throw('Options should be provided.');
+    })
 
-      it('should throw if no #options object is provided', function () {
-        (function () {
-          segmentTree.query();
-        }).should.throw('Options should be provided.');
+    it('should throw if empty #options object is provided', function () {
+      (function () {
+        segmentTree.query({}, callbackStub);
+      }).should.throw('The options provided are invalid to query intervals.');
+    })
+
+    it('should throw if #options.start argument is missing', function () {
+      (function () {
+        segmentTree.query({ end: 10 }, callbackStub);
+      }).should.throw('The options provided are invalid to query intervals.');
+    })
+
+    it('should throw if #options.start argument is of a different type then Number', function () {
+      (function () {
+        segmentTree.query({ start: '5', end: 10 }, callbackStub);
+      }).should.throw('The options provided are invalid to query intervals.');
+    })
+
+    it('should not throw if #options.start argument is of type then Array', function () {
+      (function () {
+        segmentTree.query({ start: [ 5 ], end:[ 10 ] }, callbackStub);
+      }).should.not.throw();
+    })
+
+    it('should throw if #options.end argument is missing', function () {
+      (function () {
+        segmentTree.query({ start: 5 }, callbackStub);
+      }).should.throw('The options provided are invalid to query intervals.');
+    })
+
+    it('should throw if #options.end argument is of a different type then Numbe', function () {
+      (function () {
+        segmentTree.query({ start: 5, end: '10' }, callbackStub);
+      }).should.throw('The options provided are invalid to query intervals.');
+    })
+
+    it('should not throw if #options.concurrency is missing', function () {
+      (function () {
+        segmentTree.query({ start: 5, end: 10 }, callbackStub);
+      }).should.not.throw();
+    })
+
+    it('should throw if #options.concurrency is of a different type then Boolean', function () {
+      (function () {
+        segmentTree.query({ start: 5, end: 10, concurrency: 'a' }, callbackStub);
+      }).should.throw('The options provided are invalid to query intervals.');
+    })
+
+    it('should throw if only #options.concurrency is provided', function () {
+      (function () {
+        segmentTree.query({ concurrency: true }, callbackStub);
+      }).should.throw('The options provided are invalid to query intervals.');
+    })
+
+    it('should throw if #options.point is of different type then Number', function () {
+      (function () {
+        segmentTree.query({ point: [] }, callbackStub);
+      }).should.throw('The options provided are invalid to query intervals.');
+    })
+
+    it('should throw if #options.points is of different type then Array', function () {
+      (function () {
+        segmentTree.query({ points: 5 }, callbackStub);
+      }).should.throw('The options provided are invalid to query intervals.');
+    })
+
+    describe('when querying (start, end)', function () {
+
+      it('should return none on (0, 0) for given interval', function () {
+        segmentTree.query({ start: 0, end: 0 }, function (interals) {
+          interals.should.be.empty;
+        })
       })
 
-      it('should throw if empty #options object is provided', function () {
-        (function () {
-          segmentTree.query({});
-        }).should.throw('The options provided are invalid to query intervals.');
+      it('should return 1 on (1, 1) for given interval', function () {
+        segmentTree.query({ start: 1, end: 1 }, function (interals) {
+          interals.length.should.be.eql(1);
+        })
       })
 
-      it('should throw if #options.start argument is missing', function () {
-        (function () {
-          segmentTree.query({ end: 10 }, callbackStub);
-        }).should.throw('The options provided are invalid to query intervals.');
+      it('should return none on (1.1, 1.9) for given interval', function () {
+        segmentTree.query({ start: 1.1, end: 1.9 }, function (interals) {
+          interals.should.be.empty;
+        })
       })
 
-      it('should throw if #options.start argument is of a different type then Number', function () {
-        (function () {
-          segmentTree.query({ start: '5', end: 10 }, callbackStub);
-        }).should.throw('The options provided are invalid to query intervals.');
-      })
-
-      it('should not throw if #options.start argument is of type then Array', function () {
-        (function () {
-          segmentTree.query({ start: [ 5 ], end:[ 10 ] }, callbackStub);
-        }).should.not.throw();
-      })
-
-      it('should throw if #options.end argument is missing', function () {
-        (function () {
-          segmentTree.query({ start: 5 }, callbackStub);
-        }).should.throw('The options provided are invalid to query intervals.');
-      })
-
-      it('should throw if #options.end argument is of a different type then Numbe', function () {
-        (function () {
-          segmentTree.query({ start: 5, end: '10' }, callbackStub);
-        }).should.throw('The options provided are invalid to query intervals.');
-      })
-
-      it('should not throw if #options.concurrency is missing', function () {
-        (function () {
-          segmentTree.query({ start: 5, end: 10 }, callbackStub);
-        }).should.not.throw();
-      })
-
-      it('should throw if #options.concurrency is of a different type then Boolean', function () {
-        (function () {
-          segmentTree.query({ start: 5, end: 10, concurrency: 'a' }, callbackStub);
-        }).should.throw('The options provided are invalid to query intervals.');
-      })
-
-      it('should throw if only #options.concurrency is provided', function () {
-        (function () {
-          segmentTree.query({ concurrency: true }, callbackStub);
-        }).should.throw('The options provided are invalid to query intervals.');
-      })
-
-      it('should throw if #options.point is of different type then Number', function () {
-        (function () {
-          segmentTree.query({ point: [] }, callbackStub);
-        }).should.throw('The options provided are invalid to query intervals.');
-      })
-
-      it('should throw if #options.points is of different type then Array', function () {
-        (function () {
-          segmentTree.query({ points: 5 }, callbackStub);
-        }).should.throw('The options provided are invalid to query intervals.');
-      })
-
-      it('should return correct number of intervals', function () {
-        segmentTree.query({ start: 0, end: 0 }).should.equal(0);
-        segmentTree.query({ start: 15, end: 25 }).should.equal(0);
-        segmentTree.query({ start: 1, end: 2 }).should.equal(2);
-        segmentTree.query({ start: 2.5, end: 3 }).should.equal(1);
-        segmentTree.query({ start: 5, end: 6 }).should.equal(3);
-        segmentTree.query({ start: 6.5, end: 11 }).should.equal(5);
-      })
-
-      it('should return correct number of concurrences for given points', function () {
-        segmentTree.query({ start: 5, end: 6, concurrency: true }, function (data) {
-          //console.log(data);
-        }).should.equal(2);
+      it('should return 2 on (2, 4) for given interval where by default endpoints are included', function () {
+        segmentTree.query({ start: 2, end: 4 }, function (interals) {
+          interals.length.should.be.eql(2);
+        })
       })
     })
 
-    describe('#queryPoint()', function () {
-      it('should return correct number of overlaps for a given point', function () {
-        segmentTree.query({ point: 0 }).should.equal(0);
-        segmentTree.query({ point: 15 }).should.equal(0);
-        segmentTree.query({ point: 1 }).should.equal(1);
-        segmentTree.query({ point: 2 }).should.equal(1);
-        segmentTree.query({ point: 3 }).should.equal(1);
-        segmentTree.query({ point: 2.5 }).should.equal(1);
-        segmentTree.query({ point: 5 }).should.equal(2);
-        segmentTree.query({ point: 6 }).should.equal(3);
-        segmentTree.query({ point: 6.5 }).should.equal(2);
-        segmentTree.query({ point: 11 }).should.equal(3);
-      })
-    })
+  //   it('should return correct number of intervals', function () {
+  //     segmentTree.query({ start: 0, end: 0 }).should.equal(0);
+  //     segmentTree.query({ start: 15, end: 25 }).should.equal(0);
+  //     segmentTree.query({ start: 1, end: 2 }).should.equal(2);
+  //     segmentTree.query({ start: 2.5, end: 3 }).should.equal(1);
+  //     segmentTree.query({ start: 5, end: 6 }).should.equal(3);
+  //     segmentTree.query({ start: 6.5, end: 11 }).should.equal(5);
+  //   })
 
-    describe('#queryPoints()', function () {
-      it('should return correct number of overlaps for given points', function () {
-        segmentTree.query({ points: [0] }).should.equal(0);
-        segmentTree.query({ points: [0, 15] }).should.equal(0);
-        segmentTree.query({ points: [1, 2, 3] }).should.equal(2);
-        segmentTree.query({ points: [2, 2.5, 3] }).should.equal(1);
-        segmentTree.query({ points: [5, 6] }).should.equal(3);
-        segmentTree.query({ points: [6, 6.5] }).should.equal(3);
-        segmentTree.query({ points: [6, 5, 4, 3] }).should.equal(4);
-        segmentTree.query({ points: [11, 11.5] }).should.equal(3);
-      })
-    })
+  //   it('should return correct number of concurrences for given points', function () {
+  //     segmentTree.query({ start: 5, end: 6, concurrency: true }, function (data) {
+  //       //console.log(data);
+  //     }).should.equal(2);
+  //   })
+  // })
+
+  // describe('#queryPoint()', function () {
+  //   it('should return correct number of overlaps for a given point', function () {
+  //     segmentTree.query({ point: 0 }).should.equal(0);
+  //     segmentTree.query({ point: 15 }).should.equal(0);
+  //     segmentTree.query({ point: 1 }).should.equal(1);
+  //     segmentTree.query({ point: 2 }).should.equal(1);
+  //     segmentTree.query({ point: 3 }).should.equal(1);
+  //     segmentTree.query({ point: 2.5 }).should.equal(1);
+  //     segmentTree.query({ point: 5 }).should.equal(2);
+  //     segmentTree.query({ point: 6 }).should.equal(3);
+  //     segmentTree.query({ point: 6.5 }).should.equal(2);
+  //     segmentTree.query({ point: 11 }).should.equal(3);
+  //   })
+  // })
+
+  // describe('#queryPoints()', function () {
+  //   it('should return correct number of overlaps for given points', function () {
+  //     segmentTree.query({ points: [0] }).should.equal(0);
+  //     segmentTree.query({ points: [0, 15] }).should.equal(0);
+  //     segmentTree.query({ points: [1, 2, 3] }).should.equal(2);
+  //     segmentTree.query({ points: [2, 2.5, 3] }).should.equal(1);
+  //     segmentTree.query({ points: [5, 6] }).should.equal(3);
+  //     segmentTree.query({ points: [6, 6.5] }).should.equal(3);
+  //     segmentTree.query({ points: [6, 5, 4, 3] }).should.equal(4);
+  //     segmentTree.query({ points: [11, 11.5] }).should.equal(3);
+  //   })
   })
 })
