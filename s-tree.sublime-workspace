@@ -1,0 +1,373 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"set",
+				"setTimeout(function, milliseconds);"
+			],
+			[
+				"process",
+				"process.exit(code);"
+			],
+			[
+				"test",
+				"testMethod"
+			],
+			[
+				"sales",
+				"Salesforce"
+			]
+		]
+	},
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 87.0,
+		"selected_items":
+		[
+			[
+				"INsta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/rogeriocarvalho/Projects/node/s-tree/s-tree.sublime-project",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/coverage/coverage.json",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/node_modules/istanbul/node_modules/handlebars/node_modules/optimist/example/line_count_options.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/node_modules/istanbul/node_modules/async/component.json",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/node_modules/istanbul/node_modules/js-yaml/lib/js-yaml/common.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/test/segment.test.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/lib/util.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/test/interval.test.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/lib/interval.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/lib/interval-set.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/lib/node.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/test/interval-set.test.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/index.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/poc.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/test/node.test.js",
+		"/Users/rogeriocarvalho/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/rogeriocarvalho/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/coverage/index.html",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/test/tree-node.test.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/test/mocha.opts",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/test/segment-tree.test.js",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/.gitignore",
+		"/Users/rogeriocarvalho/Projects/node/s-tree/package.json",
+		"/Users/rogeriocarvalho/Projects/node/lrc/spec/mocha.opts",
+		"/Users/rogeriocarvalho/Projects/node/lrc/data/data.csv",
+		"/Users/rogeriocarvalho/Projects/node/lrc/lib/api/long-running-calls.js",
+		"/Users/rogeriocarvalho/Projects/node/lrc/lib/api/overlaps.js",
+		"/Users/rogeriocarvalho/Projects/node/lrc/lib/factory/record.js",
+		"/Users/rogeriocarvalho/Projects/node/lrc/data/long-running_calls-01-22_28-2015.csv",
+		"/Users/rogeriocarvalho/Projects/node/lrc/lib/scatterplot.js",
+		"/Users/rogeriocarvalho/Projects/node/lrc/lib/analyser/index.js",
+		"/Users/rogeriocarvalho/Projects/node/lrc/lib/analyser.js",
+		"/Users/rogeriocarvalho/Projects/node/lrc/package.json",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/gulpfile.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/package.json",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/.slugignore",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/.gitignore",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/heroku_error.txt",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/src/app.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/index.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/.travis.yml",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/test/features/support/page-factory.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/test/features/support/world.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/test/features/support/page-base.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/Procfile",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/test/features/support/hooks.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/dist/src/app.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/.jsbeautifyrc",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/.jshintrc",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/node_modules/gulp-express-server/index.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/server2.js/server.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/src/server.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/src/public/index.html",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/test/features/support/pages/home.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/README.md",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/src/config/express.js",
+		"/Users/rogeriocarvalho/Projects/node/rogeriocarvalho.io/src/index.js",
+		"/Users/rogeriocarvalho/Projects/node/static-worker/package.json",
+		"/Users/rogeriocarvalho/Library/Application Support/Sublime Text 3/Packages/User/Apex.sublime-settings",
+		"/Users/rogeriocarvalho/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/rogeriocarvalho/Library/Application Support/Sublime Text 3/Packages/User/mavensmate.sublime-settings",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32-ci/src/classes/FC_LiveAgentController_when_displaying_the_chat_button_spec.cls",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32-ci/src/classes/FC_LiveAgentController_Test.cls",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32-ci/dev32-ci.sublime-project",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32/src/classes/FC_CommonUtilities.cls",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32/src/classes/FC_LiveAgentController.cls",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32/config/.settings",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32/src/classes/FC_LiveAgentController_Test.cls",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32/src/pages/FC_ListsTemplate.page",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32/src/components/FC_LiveAgent.component",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32/src/classes/FC_Language.cls",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32/src/classes/FC_Constants.cls",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32/src/staticresources/DFS_Logo.resource",
+		"/Users/rogeriocarvalho/Projects/salesforce/dev32/src/staticresources/FC_DealEditor.resource",
+		"/Users/rogeriocarvalho/Library/Application Support/Sublime Text 3/Packages/MavensMate/mavensmate.sublime-settings",
+		"/Users/rogeriocarvalho/Projects/node/static-worker/test/imdb-spec.js",
+		"/Users/rogeriocarvalho/Projects/node/static-worker/test/mocks/index.js",
+		"/Users/rogeriocarvalho/Projects/node/imdb-worker/download.js",
+		"/Users/rogeriocarvalho/Projects/node/static-worker/lib/imdb.js",
+		"/Users/rogeriocarvalho/Projects/node/static-worker/test/imdb.js",
+		"/Users/rogeriocarvalho/Projects/node/static-worker/test/mocha.opts",
+		"/Users/rogeriocarvalho/Projects/node/staticjs/jobs/static-worker-download/worker.js",
+		"/Users/rogeriocarvalho/Downloads/MyMDb CodeProject/MyMDb/MyMDb/Form1.cs",
+		"/Users/rogeriocarvalho/Projects/node/dashboard.dfs.dell.com/poc/app.js",
+		"/Users/rogeriocarvalho/Projects/node/dashboard.dfs.dell.com/poc/area/data.tsv",
+		"/Users/rogeriocarvalho/Downloads/MyMDb CodeProject/PawJershauge.IMDBFlatFiles/MediaEntry.cs",
+		"/Users/rogeriocarvalho/Downloads/imdb/movies.list",
+		"/Users/rogeriocarvalho/Downloads/imdb/plot.list",
+		"/Users/rogeriocarvalho/Downloads/imdb/actors.list",
+		"/Users/rogeriocarvalho/Downloads/imdb/movie-links.list",
+		"/Users/rogeriocarvalho/Downloads/imdb/iso-aka-titles.list",
+		"/Users/rogeriocarvalho/Downloads/imdb/aka-titles.list",
+		"/Users/rogeriocarvalho/Downloads/MersenneTwister19937js/MersenneTwister19937class.js",
+		"/Users/rogeriocarvalho/Downloads/MersenneTwister19937js/MersenneTwister19937.js",
+		"/Users/rogeriocarvalho/Downloads/NFe XML.XML",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/oauth2.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/auth/index.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/auth.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/db/index.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/app.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/authentication/index.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/db/schemas/user.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/db/schemas/index.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/mongoose.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/db/schemas/access-token.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/db/schemas/refresh-token.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/db/schemas/client.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/db/models/user.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/seed.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/package.json",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/Gruntfile.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/test/features/support/page-base.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/server.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/.env",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/.dist",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/.test",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/.gitignore",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/lib/config.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/.env.test",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/config.json",
+		"/Users/rogeriocarvalho/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/config/development.json",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/libs/config.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/.env_dev",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/config.json",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/Procfile",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/server/../app.js",
+		"/Users/rogeriocarvalho/Projects/node/nutri.io/app/modules/log.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"this._root",
+			"this.set",
+			"_intervalSet",
+			"_insertInterval",
+			"_createNodes",
+			"queryIntervals",
+			"queryInterval",
+			"_query",
+			"_querySegments",
+			"_queryInterval",
+			"_queryConcurrencies",
+			"_queryInterval",
+			"should return INTERSECT if given segment",
+			"should return SUBSET if given segment is between",
+			"should return SUBSET if given interval is between e",
+			"should return INTERSECT if given interval end bet",
+			"Interval #compareTo() should return INTERSECT if given interval end bet",
+			"should return INTERSECT if given segment end between",
+			"should return INTERSECT if given segment end between a",
+			"hould return INTERSECT if given segment end between a",
+			"_queryInterval",
+			"console.log",
+			"_node",
+			"interval",
+			"Interval",
+			"interval",
+			"Interval",
+			"interval",
+			"Interval",
+			"interval",
+			"Interval",
+			"node",
+			"prev",
+			"moment",
+			"results2",
+			"isLongRunning",
+			"2015-01-29",
+			"2015-01-29T14",
+			"2015-01-29T14:54",
+			"2015-01-29T14:54:44",
+			"longRunnings",
+			"1422422016662",
+			"length",
+			"index.js",
+			"connect",
+			"compil",
+			"len",
+			"length",
+			"True Detective",
+			"(TV)",
+			"True Detective",
+			"The Big Bang Theory",
+			"True Detective",
+			"'s",
+			"The Big Bang Theory",
+			"User",
+			"!=",
+			"started",
+			"environment",
+			"config.default.js",
+			"server",
+			"path.resolve(__dirname, config.server, 'app.js'),"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"this.root",
+			"this.intervalSet",
+			"distributeIntervals",
+			"createNodes",
+			"querySegments",
+			"_querySegments",
+			"!==",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.MavensMate-OutputPanel":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"fc_li",
+				"src/classes/FC_LiveAgentController.cls"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 200.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

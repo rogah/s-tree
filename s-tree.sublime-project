@@ -1,0 +1,19 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "."
+		}
+	],
+
+  "ternjs": {
+    "exclude": ["wordpress/**", "node_modules/**"],
+    "libs": ["ecma5"],
+    "plugins": {
+      "node": {
+        "baseURL": "./lib"
+      }
+    }
+  }
+}

@@ -1,6 +1,17 @@
 var SegmentTree = require('../lib/segment-tree');
 
 describe('SegmentTree', function () {
+
+  describe('#hasIntervals()', function () {
+    it('should return false if no interval added', function () {
+      new SegmentTree().hasIntervals().should.be.false;
+    })
+
+    it('should return true if there is at least one interval', function () {
+      new SegmentTree().push(5, 10).hasIntervals().should.be.true;
+    })
+  })
+
   describe('#push()', function () {
     var segmentTree;
 
@@ -31,41 +42,103 @@ describe('SegmentTree', function () {
         segmentTree.push(5, 10, 'foo');
       }).should.not.throw();
     })
-  });
 
-  describe('#build()', function () {
-    it('should throw if no intervals', function () {
-      (function () {
-        new SegmentTree().build();
-      }).should.throw('There is no interval.');
+    it('should return the object itself', function () {
+      segmentTree.push(5, 10, 'foo').should.be.eql(segmentTree);
     })
   })
 
-  /*------------------------------------------------------------------------------------------*
-  |  01    02    03    04    05    06    07    08    09    10    11    12    13    14    15   |
-  |-------------------------------------------------------------------------------------------|                                                                                           |  
-  |  oa>   o--b-->           o-----c----->           o-------------f--------------->          |
-  |                    0-----d----->                       o--------g-------->                |
-  |                                 o--------e------->           oh>                          |
-  *------------------------------------------------------------------------------------------*/
+  describe('#clear()', function () {
+    it('should return the object itself', function () {
+      var segmentTree = new SegmentTree().push(5, 10, 'foo');
+      segmentTree.clear().should.be.eql(segmentTree);
+    })
 
-  describe('when querying', function () { 
-    var segmentTree = new SegmentTree();
+    it('should return the object itself', function () {
+      var segmentTree = new SegmentTree();
+      segmentTree.clear().should.be.eql(segmentTree);
+    })
+  })
+
+  describe('#build()', function () {
+    it('should throw if no intervals pushed into the tree', function () {
+      (function () {
+        new SegmentTree().build();
+      }).should.throw('There is no interval available.');
+    })
+
+    it('should return the object itself', function () {
+      var segmentTree = new SegmentTree()
+        .push(5, 10, 'foo');
+      segmentTree.build().should.be.eql(segmentTree);
+    })
+  })
+
+  describe('when querying', function () {
+
+    /*------------------------------------------------------------------------------------------*
+    |  01    02    03    04    05    06    07    08    09    10    11    12    13    14    15   |
+    |-------------------------------------------------------------------------------------------|                                                                                           |  
+    |  oa>   o--b-->           o-----c----->           o-------------f--------------->          |
+    |                    0-----d----->                       o--------g-------->                |
+    |                                 o--------e------->           oh>                          |
+    *------------------------------------------------------------------------------------------*/
+
+    var segmentTree = new SegmentTree(),
+      callbackStub = function () {};
 
     beforeEach(function() {
-      segmentTree.clear();
-      segmentTree.push(1, 1, 'a');
-      segmentTree.push(2, 3, 'b');
-      segmentTree.push(5, 7, 'c');
-      segmentTree.push(4, 6, 'd');
-      segmentTree.push(6, 9, 'e');
-      segmentTree.push(9, 14, 'f');
-      segmentTree.push(10, 13, 'g');
-      segmentTree.push(11, 11, 'h');
-      segmentTree.build();
+      segmentTree
+        .clear()
+          .push(1, 1, 'a')
+          .push(2, 3, 'b')
+          .push(5, 7, 'c')
+          .push(4, 6, 'd')
+          .push(6, 9, 'e')
+          .push(9, 14, 'f')
+          .push(10, 13, 'g')
+          .push(11, 11, 'h')
+        .build();
     });
 
-    describe('#queryInterval()', function () {
+    describe('#query()', function () {
+
+      it('should throw if no #options object is provided', function () {
+        (function () {
+          segmentTree.query();
+        }).should.throw('Options should be provided.');
+      })
+
+      it('should throw if empty #options object is provided', function () {
+        (function () {
+          segmentTree.query({});
+        }).should.throw('The options provided are invalid to query intervals.');
+      })
+
+      it('should throw if #options.start argument is missing', function () {
+        (function () {
+          segmentTree.query({ end: 10 }, callbackStub);
+        }).should.throw('The options provided are invalid to query intervals.');
+      })
+
+      it('should throw if #options.start argument is of a different type', function () {
+        (function () {
+          segmentTree.query({ start: '5', end: 10 }, callbackStub);
+        }).should.throw('The options provided are invalid to query intervals.');
+      })
+
+      it('should throw if #options.end argument is missing', function () {
+        (function () {
+          segmentTree.query({ start: 5 }, callbackStub);
+        }).should.throw('The options provided are invalid to query intervals.');
+      })
+
+      it('should throw if #options.end argument is of a different type', function () {
+        (function () {
+          segmentTree.query({ start: 5, end: '10' }, callbackStub);
+        }).should.throw('The options provided are invalid to query intervals.');
+      })
+
       it('should return correct number of intervals', function () {
         segmentTree.query({ start: 0, end: 0 }).should.equal(0);
         segmentTree.query({ start: 15, end: 25 }).should.equal(0);
