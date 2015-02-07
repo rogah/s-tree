@@ -11,7 +11,7 @@ Node.js module implementation of [Segment Tree](http://en.wikipedia.org/wiki/Seg
 ```javascript
 var stree = require('s-tree');
 
-stree(function (tree) {
+stree(function(tree) {
   
   tree
     .push(5, 10, 'foo')
@@ -19,7 +19,7 @@ stree(function (tree) {
     .push(12, 16)
   .build();
 
-  tree.query({ start: 10, end: 12 }, function (intervals) {
+  tree.query({ start: 10, end: 12 }, function(intervals) {
     ...
   });
 
