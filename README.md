@@ -1,6 +1,6 @@
 # s-tree
 
-Node.js module implementation of [Segment Tree](http://en.wikipedia.org/wiki/Segment_tree) tree data structure for storing intervals, or segments. It allows querying which of the stored segments contain a given point.
+Node.js module implementation of [Segment Tree](http://en.wikipedia.org/wiki/Segment_tree) data structure for storing intervals, or segments. It allows querying which of the stored segments contain a given point.
 
 ## Installation
 
