@@ -74,6 +74,17 @@ describe('SegmentTree', function () {
     })
   })
 
+  describe('#isBuilt()', function () {
+
+    it('should return false before tree being built', function () {
+      new SegmentTree().isBuilt().should.false;
+    })
+
+    it('should return true after tree has been called', function () {
+      new SegmentTree().push(5, 10, 'foo').build().isBuilt().should.true;
+    })
+  })
+
   describe('#query()', function () {
 
     /*------------------------------------------------------------------------------------------*

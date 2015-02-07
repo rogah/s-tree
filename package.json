@@ -1,13 +1,25 @@
 {
   "name": "s-tree",
-  "version": "1.0.0",
   "description": "Segment tree implementation",
-  "main": "index.js",
+  "version": "1.0.0",
+  "author": "Rogerio Carvalho <rogerio.w.carvalho@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rogah/s-tree.git"
+  },
+  "homepage": "https://github.com/rogah/s-tree",
+  "main": "./lib/s-tree.js",
   "scripts": {
     "coverage": "node_modules/.bin/istanbul cover node_modules/mocha/bin/_mocha --report html -- test/**/*.test.js -R spec -u exports",
     "test": "npm run coverage"
   },
-  "author": "Rogerio Carvalho",
+  "keywords": [
+    "segment",
+    "tree",
+    "algorithm",
+    "segmenttree",
+    "segment-tree"
+  ],
   "license": "ISC",
   "devDependencies": {
     "istanbul": "^0.3.5",
