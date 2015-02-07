@@ -68,12 +68,12 @@ stree(function(tree) {
 ### `query({ start, end, [endpoints], [concurrency] }, callback)`
 Query for intervals which overlap a given endpoint (start, end).
 
-* `options`:
-..* `start` Start point of interval (number)
-..* `end` End point of interval (number)
-..* `endpoints` optional parameter to indicate whether or not endpoints should be included on interval comparison (boolean, default: true)
-..* `concurrency` optional parameter to indicate whether or not the query should look only for concurrent intervals (boolean, default: false)
-* `callback` The callback function which provides the queried intervals (e.g. function(intervals) {...})
+`options`:
+   `start` Start point of interval (number)
+   `end` End point of interval (number)
+   `endpoints` optional parameter to indicate whether or not endpoints should be included on interval comparison (boolean, default: true)
+   `concurrency` optional parameter to indicate whether or not the query should look only for concurrent intervals (boolean, default: false)
+`callback` The callback function which provides the queried intervals (e.g. function(intervals) {...})
 
 **Returns** `number` of intervals
 
