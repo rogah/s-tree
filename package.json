@@ -1,7 +1,7 @@
 {
   "name": "s-tree",
   "description": "Segment Tree data structure for storing intervals or segments. It allows querying which of the stored segments contain a given point.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Rogerio Carvalho <rogerio.w.carvalho@gmail.com>",
   "repository": {
     "type": "git",
