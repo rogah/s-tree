@@ -1,6 +1,8 @@
-[![Build Status](https://travis-ci.org/rogah/s-tree.svg?branch=master)](https://travis-ci.org/rogah/s-tree)
-
 # s-tree
+
+[![Build Status](https://travis-ci.org/rogah/s-tree.svg?branch=master)](https://travis-ci.org/rogah/s-tree)
+[![NPM Version](http://img.shields.io/npm/v/s-tree.svg?style=flat)](https://www.npmjs.org/package/s-tree)
+[![NPM Downloads](https://img.shields.io/npm/dm/s-tree.svg?style=flat)](https://www.npmjs.org/package/s-tree)
 
 Node.js module implementation of [Segment Tree](http://en.wikipedia.org/wiki/Segment_tree) data structure for storing intervals, or segments. It allows querying which of the stored segments contain a given point.
 
