@@ -1,8 +1,13 @@
-var should = require('should');
+var should = require('should'), 
+  sinon = require('sinon');
 
 var SegmentTree = require('../lib/segment-tree');
 
 describe('SegmentTree', function () {
+
+  it('should implement EventEmitter', function () {
+    new SegmentTree().should.be.an.instanceOf(require('events').EventEmitter);
+  });
 
   describe('#hasIntervals()', function () {
     it('should return false if no interval added', function () {
@@ -15,50 +20,70 @@ describe('SegmentTree', function () {
   });
 
   describe('#push()', function () {
-    var segmentTree;
+    var segmentTree,
+      eventSpy;
 
     beforeEach(function () {
+      eventSpy = sinon.spy();
       segmentTree = new SegmentTree();
+      segmentTree.on('pushed', eventSpy);
+      segmentTree.on('error', eventSpy);
     });
 
-    it('should throw if #start is not provided', function () {
-      (function () {
-        segmentTree.push();
-      }).should.throw();
+    it('should emit "error" event if #start is not provided', function () {
+      segmentTree.push();
+      eventSpy.called.should.be.true;
+      eventSpy.getCall(0).args[0].should.be.a.Error;
     });
 
     it('should throw if #end is not provided', function () {
-      (function () {
-        segmentTree.push(5);
-      }).should.throw();
+      segmentTree.push(5);
+      eventSpy.called.should.be.true;
+      eventSpy.getCall(0).args[0].should.be.a.Error;
     });
 
     it('should not throw if #data is not provided', function () {
-      (function () {
-        segmentTree.push(5, 10);
-      }).should.not.throw();
+      segmentTree.push(5, 10);
+      eventSpy.called.should.be.true;
+      should.not.exist(eventSpy.getCall(0).args[0].data);
     });
 
     it('should accept #data is provided', function () {
-      (function () {
-        segmentTree.push(5, 10, 'foo');
-      }).should.not.throw();
+      segmentTree.push(5, 10, 'foo');
+      eventSpy.called.should.be.true;
+      eventSpy.getCall(0).args[0].data.should.be.eql('foo');
     });
 
     it('should return the object itself', function () {
       segmentTree.push(5, 10, 'foo').should.be.eql(segmentTree);
     });
+
+    it('should emit a "pushed" event passing arguments through callback', function () {
+      segmentTree.push(5, 10, 'foo');
+      eventSpy.calledWithExactly({ 
+        start: 5, 
+        end: 10, 
+        data: 'foo' 
+      }).should.be.true;
+    });
   });
 
   describe('#clear()', function () {
+    var segmentTree = new SegmentTree().push(5, 10, 'foo');
+
     it('should return the object itself', function () {
-      var segmentTree = new SegmentTree().push(5, 10, 'foo');
       segmentTree.clear().should.be.eql(segmentTree);
     });
 
-    it('should return the object itself', function () {
-      var segmentTree = new SegmentTree();
-      segmentTree.clear().should.be.eql(segmentTree);
+    it('should clear all intervals', function () {
+      segmentTree.clear().hasIntervals().should.be.false;
+    });
+
+    it('should emit a "clean" event', function () {
+      var eventSpy = sinon.spy();
+      segmentTree.on('clean', eventSpy);
+      segmentTree.clear();
+      eventSpy.called.should.be.true;
     });
   });
 
