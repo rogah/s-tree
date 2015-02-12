@@ -88,16 +88,27 @@ describe('SegmentTree', function () {
   });
 
   describe('#build()', function () {
+    var segmentTree,
+      eventSpy;
+
+    beforeEach(function () {
+      eventSpy = sinon.spy();
+      segmentTree = new SegmentTree();
+      segmentTree.on('error', eventSpy);
+    });
+
     it('should throw if no intervals pushed into the tree', function () {
-      (function () {
-        new SegmentTree().build();
-      }).should.throw('There is no interval available.');
+      var error = new Error('There is no interval available.');
+      segmentTree.build();
+      eventSpy.called.should.be.true;
+      eventSpy.getCall(0).args[0].should.be.eql(error);
+      console.log(eventSpy);
     });
 
     it('should return the object itself', function () {
-      var segmentTree = new SegmentTree()
-        .push(5, 10, 'foo');
-      segmentTree.build().should.be.eql(segmentTree);
+      segmentTree
+        .push(5, 10, 'foo')
+        .build().should.be.eql(segmentTree);
     });
   });
 
